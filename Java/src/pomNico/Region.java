@@ -22,7 +22,7 @@ public void setNomRegion(String nomRegion) {
 }
 @Override
 public String toString() {
-	return ""+ "Region :" + " " + idRegion + " " + nomRegion;
+	return ""+ "Region :" + " " + idRegion + " " + nomRegion; 
 }
 
 }

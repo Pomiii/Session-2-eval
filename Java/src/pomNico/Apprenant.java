@@ -63,7 +63,7 @@ public class Apprenant {
 	@Override
 	public String toString() {
 		return ""+ "Apprenant :" +" "+  idApprenant+ " "+ nomApprenant +" "+  prenomApprenant+ " "+ dateNaissance +" "+  emailApprenant
-				+ " " + photoApprenant ;
+				+ " " + photoApprenant ; 
 	}
 	
 	
