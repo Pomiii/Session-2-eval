@@ -1,4 +1,10 @@
 package pomNico;
+/**
+ * 
+ * @author Nico
+ *
+ */
+
 
 public class Region {
 int idRegion;
