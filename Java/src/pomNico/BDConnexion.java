@@ -1,7 +1,5 @@
 package pomNico;
 
-import java.sql.Connection;
-
 import javax.swing.JOptionPane;
 
 /**
