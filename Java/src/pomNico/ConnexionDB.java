@@ -65,12 +65,6 @@ public class ConnexionDB {
 
 		try {
 
-
-			
-
-			int type = ResultSet.TYPE_SCROLL_SENSITIVE;
-			int mode = ResultSet.CONCUR_UPDATABLE;
-
 			
 			statement = ConnexionDB.getConnexion(statement);
 			

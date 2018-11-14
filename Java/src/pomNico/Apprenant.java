@@ -1,7 +1,6 @@
 package pomNico;
 
-import java.sql.Blob;
-import java.sql.Time;
+import java.sql.Date;
 /**
  * 
  * @author Nico
@@ -11,11 +10,11 @@ public class Apprenant {
 	int idApprenant;
 	String nomApprenant;
 	String prenomApprenant;
-	Time dateNaissance;
+	Date dateNaissance;
 	String emailApprenant;
-	Blob photoApprenant;
-	public Apprenant(int idApprenant, String nomApprenant, String prenomApprenant, Time dateNaissance,
-			String emailApprenant, Blob photoApprenant) {
+	String photoApprenant;
+	public Apprenant(int idApprenant, String nomApprenant, String prenomApprenant, Date dateNaissance,
+			String emailApprenant, String photoApprenant) {
 		super();
 		this.idApprenant = idApprenant;
 		this.nomApprenant = nomApprenant;
@@ -24,6 +23,10 @@ public class Apprenant {
 		this.emailApprenant = emailApprenant;
 		this.photoApprenant = photoApprenant;
 	}
+	public Apprenant() {
+		// TODO Auto-generated constructor stub
+	}
+	
 	public int getIdApprenant() {
 		return idApprenant;
 	}
@@ -42,11 +45,11 @@ public class Apprenant {
 	public void setPrenomApprenant(String prenomApprenant) {
 		this.prenomApprenant = prenomApprenant;
 	}
-	public Time getDateNaissance() {
+	public Date getDateNaissance() {
 		return dateNaissance;
 	}
-	public void setDateNaissance(Time dateNaissance) {
-		this.dateNaissance = dateNaissance;
+	public void setDateNaissance(Date date) {
+		this.dateNaissance = date;
 	}
 	public String getEmailApprenant() {
 		return emailApprenant;
@@ -54,11 +57,11 @@ public class Apprenant {
 	public void setEmailApprenant(String emailApprenant) {
 		this.emailApprenant = emailApprenant;
 	}
-	public Blob getPhotoApprenant() {
+	public String getPhotoApprenant() {
 		return photoApprenant;
 	}
-	public void setPhotoApprenant(Blob photoApprenant) {
-		this.photoApprenant = photoApprenant;
+	public void setPhotoApprenant(String string) {
+		this.photoApprenant = string;
 	}
 	@Override
 	public String toString() {
