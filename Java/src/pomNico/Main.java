@@ -29,7 +29,7 @@ public class Main {
 	}
 
 	public static void attenteEntree() {
-		System.out.println("Appuyez sur entrée pour continuer");
+		System.out.println("APPUYER SUR ENTREE POUR CONTINUER");
 		try{       
 			System.in.read();
 		}
