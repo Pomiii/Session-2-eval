@@ -11,7 +11,7 @@ public class Main {
 		
 		Requetes.afficherApprenantNom();
 		
-		ConnexionDB.closeConnexion();
+		//ConnexionDB.closeConnexion();
 	}
 	
 	

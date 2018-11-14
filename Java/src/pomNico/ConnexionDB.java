@@ -58,15 +58,21 @@ public class ConnexionDB {
 	public static ResultSet executerQuery(String requete) throws ClassNotFoundException, SQLException
 
 	{
-		
+		/*
+		 * 	On d�clare un objet de type Statement que l'on nomme instruction. Cet
+		 * 	objet soumet la requ�te � la base de donn�es dans MySQL.
+		 * 	On d�clare un objet de type ResultSet que l'on nomme resultat. cet objet
+		 * 	est retourn� pour encapsuler les r�sultats de la requ�te. Il va nous permettre
+		 * 	de manipuler les r�sultats de la requ�te.
+		 *
+		 */
 		Statement statement = null;
 		ResultSet resultat = null;
 
 
 		try {
 
-			
-			statement = ConnexionDB.getConnexion(statement);
+			statement = getConnexion().createStatement();
 			
 
 			resultat = statement.executeQuery(requete);
@@ -79,12 +85,24 @@ public class ConnexionDB {
 			e.printStackTrace();
 			System.exit(-1);
 		}
-		return resultat;	
+		return resultat;	// retourne un ResultSet
+
 
 	}
-	public static Statement getConnexion(Statement statement) {
-		// TODO Auto-generated method stub
-		return statement;
+
+
+
+	public static Connection getConnexion() {
+		return connexion;
 	}
 
+
+
+	public static void setConnexion(Connection connexion) {
+		ConnexionDB.connexion = connexion;
+	}
+
+
+
+	
 }
