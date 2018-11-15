@@ -7,45 +7,51 @@ public class Main {
 	public static void main(String[] args) throws ClassNotFoundException, SQLException {
 
 		// appel d'ouverture de connexion
+		System.out.println("On se connecte à la BDD");
 		ConnexionDB.connexion();
 
 		
-		Apprenant Rizon = new Apprenant();
-		
-		supprimerApprenantParNom(Rizon);
 
 		// appel methode pour afficher les activites de Nicolas Filine
+		System.out.println("on affiche les activités de Nicolas Filine");
 		afficherActiviteParNom();
 		attenteEntree();
 
 		// appeler la methode pour afficher tous les apprenants
+		System.out.println("on affiche tous les apprenants");
 		tousApprenants();
 		attenteEntree();
 
 		// appeler la methode pour afficher ceux de la region IDF
+		System.out.println("on affiche les apprenants d'Ile de France");
 		regionIDF();
 		attenteEntree();
 
 		// appeler la methode pour afficher ceux de la region PL
+		System.out.println("on affiche les apprenants des Pays de Loire");
 		regionPL();
 		attenteEntree();
 
 		// appeler la methode pour afficher ceux de la region Aq
+		System.out.println("On affiche les apprenants d'Aquitaine");
 		regionAq();
 
-// appel de la methode ajouterApprenant (voir sous le Main)
-		attenteEntree();
-		ajouterApprenant();
 
+		System.out.println("On supprime l'apprenant de la table");
+		Apprenant Rizon = new Apprenant();
+		
+		supprimerApprenantParNom(Rizon);
+		
+// appel de la methode ajouterApprenant (voir sous le Main)
+		
+		attenteEntree();
+		System.out.println("On ajoute un apprenant à la table");
+		ajouterApprenant();
 		// appel de fermeture de connexion
 		ConnexionDB.closeConnexion();
 	}
 
-	public static void supprimerApprenantParNom(Apprenant apprenant) throws SQLException {
-		
-		apprenant.setIdApprenant(32);
-		Requetes.supprimerApprenant(apprenant);
-	}
+	
 
 	public static void afficherActiviteParNom() throws ClassNotFoundException, SQLException {
 		ArrayList<Activite> activiteDeLapprenant = Requetes.afficherActivitesApprenant("Filine");
@@ -61,6 +67,12 @@ public class Main {
 		Requetes.ajouterApprenant(nouvelApprenant);
 	}
 
+public static void supprimerApprenantParNom(Apprenant apprenant) throws SQLException {
+		
+		apprenant.setIdApprenant(33);
+		Requetes.supprimerApprenant(apprenant);
+	}
+	
 	public static void attenteEntree() {
 		System.out.println("APPUYER SUR ENTREE POUR CONTINUER");
 		try {
