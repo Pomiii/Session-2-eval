@@ -3,6 +3,7 @@ package pomNico;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 
@@ -150,7 +151,65 @@ public class Requetes {
 
 		return listeActivites;
 	}
+/**
+ * Màj Nom
+ */
 
+	public static String getMajNom() throws SQLException
+	{
+		 ResultSet resultat = ConnexionDB.getConnexion().createStatement().executeQuery("UPDATE APPRENANT SET nomApprenant = '?' WHERE idApprenant = '?' ");
+		 resultat.next();
+		 return resultat.getString(null);
+	}
+	
+	public static void updApprenant(Apprenant apprenant) throws SQLException
+	{
+		String nom = "nvNom";
+		PreparedStatement prepareStatement = ConnexionDB.getConnexion().prepareStatement("UPDATE APPRENANT SET nomApprenant = '"+ apprenant + "' WHERE idApprenant = '" + nom +"'");
+		//prepareStatement.setInt(?,apprenant.getIdApprenant());
+		prepareStatement.setString(1,apprenant.getNomApprenant());
+		//prepareStatement.setString(?,apprenant.getPrenomApprenant());
+		//prepareStatement.setDate(?,apprenant.getDateNaissance());
+		//prepareStatement.setString(?,apprenant.getEmailApprenant());
+		//prepareStatement.setString(?,apprenant.getPhotoApprenant());
+		//prepareStatement.setInt(?,apprenant.getIdRegionApprenant());
+		prepareStatement.executeUpdate();
+		
+	}
+	// Remove
+	public static void rmvApprenant(Apprenant apprenant) throws SQLException
+	{
+		{
+			Statement statement = null;
+
+			try {
+				statement = ConnexionDB.getConnexion().createStatement();
+				String sql = "DELETE FROM apprenant WHERE PI_ID="+ apprenant.getIdApprenant();
+				statement.executeUpdate(sql);
+				String nomApprenant = null;
+				System.out.println("Suppression de l'apprenant "+ nomApprenant+ " effectuée");
+			}
+			catch(SQLException e){
+				System.out.println("Erreur lors de la suppression du pilote !");
+			}
+		}
+		
+	}
+	// Affecter 2 activités 
+	public static  void addActivity(int a, int b) throws SQLException {
+		PreparedStatement prepareStatement = ConnexionDB.getConnexion().prepareStatement("INSERT INTO fait` VALUES( ? , ? )");
+		prepareStatement.setInt(1,"fait.getIdActivite");
+		prepareStatement.setInt(2,"fait.getIdAppprenant");
+		prepareStatement.executeUpdate();
+	}
+	
+	public static int getNombreActivite() throws SQLException
+	{
+		 ResultSet resultat = ConnexionDB.getConnexion().createStatement().executeQuery("SELECT count(*) FROM activites");
+		 resultat.next();
+		 return resultat.getInt(1);
+	}
+	
 
 }
 
