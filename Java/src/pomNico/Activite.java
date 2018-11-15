@@ -4,11 +4,15 @@ public class Activite {
 	int idActivite;
 	String nomActivite;
 	
+	public Activite() {
+		// TODO Auto-generated constructor stub
+	}
 
 	public Activite(int idActivite, String nomActivite){
 		this.idActivite = idActivite;
 		this.nomActivite = nomActivite;
 	}
+	
 	public int getIdActivite() {
 		return idActivite;
 	}

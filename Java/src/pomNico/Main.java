@@ -7,16 +7,19 @@ public class Main {
 	public static void main (String[] args) throws ClassNotFoundException, SQLException{
 
 		
-		
-		
-		
-		
+	 
 		
 		
 		
 		
 		//appel d'ouverture de connexion
 		ConnexionDB.connexion();
+		
+		
+		// appel methode pour afficher les activites de Nicolas Filine
+		afficherActiviteParNom();
+		attenteEntree();
+
 		
 		//appeler la methode pour afficher tous les apprenants
 		tousApprenants();
@@ -36,11 +39,19 @@ public class Main {
 		
 		
 		
-		// appel de la methode ajouterApprenant (voir sous le Main)
+// appel de la methode ajouterApprenant (voir sous le Main)
+		attenteEntree();
 		ajouterApprenant();
 		
 		//appel de fermeture de connexion
 		ConnexionDB.closeConnexion();
+	}
+
+	public static void afficherActiviteParNom() throws ClassNotFoundException, SQLException {
+		ArrayList<Activite> activiteDeLapprenant =  Requetes.afficherActivitesApprenant("Filine");
+		 for (Activite activite : activiteDeLapprenant) {
+			System.out.println(activite.getNomActivite() + " " + activite.getIdActivite() + "\n");
+		}
 	}
 
 	public static void ajouterApprenant() throws SQLException {
@@ -48,7 +59,7 @@ public class Main {
 		nouvelApprenant.setIdApprenant(Requetes.getNombreApprenants()+1);
 		nouvelApprenant.setNomApprenant("Rossi");
 		nouvelApprenant.setPrenomApprenant("Valentin");
-		nouvelApprenant.setDateNaissance(null);
+		nouvelApprenant.setDateNaissance("1976-12-12");
 		nouvelApprenant.setEmailApprenant("Rossi.Valentin@gmail.com");
 		nouvelApprenant.setPhotoApprenant("url photo");
 		nouvelApprenant.setRegionApprenant(1);
