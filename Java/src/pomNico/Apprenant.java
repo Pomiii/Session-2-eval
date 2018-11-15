@@ -18,7 +18,7 @@ public class Apprenant {
 	int regionApprenant;
 	public Apprenant(int idApprenant, String nomApprenant, String prenomApprenant, String dateNaissance,
 			String emailApprenant, String photoApprenant, int regionApprenant) {
-		super();
+		
 		this.idApprenant = idApprenant;
 		this.nomApprenant = nomApprenant;
 		this.prenomApprenant = prenomApprenant;

@@ -3,7 +3,9 @@ package pomNico;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
+
 
 
 
@@ -149,6 +151,20 @@ public class Requetes {
 		System.out.println("Tableau des activites pour "+ nom);
 
 		return listeActivites;
+	}
+	public static void supprimerApprenant(Apprenant apprenant) throws SQLException
+	{
+		Statement statement = null;
+
+		try {
+			statement = ConnexionDB.getConnexion().createStatement();
+			String suppression = "DELETE FROM Apprenant WHERE idApprenant="+apprenant.getIdApprenant();
+			statement.executeUpdate(suppression);
+			System.out.println("L'apprenant "+ apprenant.getNomApprenant()+ " a été supprimé");
+		}
+		catch(SQLException e){
+			System.out.println("Impossible de supprimer l'apprenant");
+		}
 	}
 /**
  * Màj Nom
