@@ -1,20 +1,23 @@
 package pomNico;
 
-import java.sql.Date;
 /**
  * 
  * @author Nico
  *
  */
 public class Apprenant {
+	
+	
+	      
 	int idApprenant;
 	String nomApprenant;
 	String prenomApprenant;
-	Date dateNaissance;
+	String dateNaissance; 
 	String emailApprenant;
 	String photoApprenant;
-	public Apprenant(int idApprenant, String nomApprenant, String prenomApprenant, Date dateNaissance,
-			String emailApprenant, String photoApprenant) {
+	int regionApprenant;
+	public Apprenant(int idApprenant, String nomApprenant, String prenomApprenant, String dateNaissance,
+			String emailApprenant, String photoApprenant, int regionApprenant) {
 		super();
 		this.idApprenant = idApprenant;
 		this.nomApprenant = nomApprenant;
@@ -22,6 +25,7 @@ public class Apprenant {
 		this.dateNaissance = dateNaissance;
 		this.emailApprenant = emailApprenant;
 		this.photoApprenant = photoApprenant;
+		this.regionApprenant = regionApprenant;
 	}
 	public Apprenant() {
 		// TODO Auto-generated constructor stub
@@ -45,10 +49,10 @@ public class Apprenant {
 	public void setPrenomApprenant(String prenomApprenant) {
 		this.prenomApprenant = prenomApprenant;
 	}
-	public Date getDateNaissance() {
+	public String getDateNaissance() {
 		return dateNaissance;
 	}
-	public void setDateNaissance(Date date) {
+	public void setDateNaissance(String date) {
 		this.dateNaissance = date;
 	}
 	public String getEmailApprenant() {
@@ -63,10 +67,16 @@ public class Apprenant {
 	public void setPhotoApprenant(String string) {
 		this.photoApprenant = string;
 	}
+	public int getRegionApprenant() {
+		return regionApprenant;
+	}
+	public void setRegionApprenant(int regionApprenant) {
+		this.regionApprenant = regionApprenant;
+	}
 	@Override
 	public String toString() {
 		return ""+ "Apprenant :" +" "+  idApprenant+ " "+ nomApprenant +" "+  prenomApprenant+ " "+ dateNaissance +" "+  emailApprenant
-				+ " " + photoApprenant + "\n"; 
+				+ " " + photoApprenant +" "+ regionApprenant + "\n"; 
 	}
 	
 	

@@ -6,6 +6,15 @@ import java.util.ArrayList;
 public class Main {
 	public static void main (String[] args) throws ClassNotFoundException, SQLException{
 
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		//appel d'ouverture de connexion
 		ConnexionDB.connexion();
 		
@@ -24,8 +33,28 @@ public class Main {
 		//appeler la methode pour afficher ceux de la region Aq
 		regionAq();
 		
+		
+		
+		
+		// appel de la methode ajouterApprenant (voir sous le Main)
+		ajouterApprenant();
+		
 		//appel de fermeture de connexion
 		ConnexionDB.closeConnexion();
+	}
+
+	public static void ajouterApprenant() throws SQLException {
+		Apprenant nouvelApprenant = new Apprenant();
+		nouvelApprenant.setIdApprenant(Requetes.getNombreApprenants()+1);
+		nouvelApprenant.setNomApprenant("Rossi");
+		nouvelApprenant.setPrenomApprenant("Valentin");
+		nouvelApprenant.setDateNaissance(null);
+		nouvelApprenant.setEmailApprenant("Rossi.Valentin@gmail.com");
+		nouvelApprenant.setPhotoApprenant("url photo");
+		nouvelApprenant.setRegionApprenant(1);
+
+		
+		Requetes.ajouterApprenant(nouvelApprenant);
 	}
 
 	public static void attenteEntree() {
