@@ -3,7 +3,6 @@ package pomNico;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 
 
@@ -155,29 +154,28 @@ public class Requetes {
  * Màj Nom
  */
 
-	public static String getMajNom() throws SQLException
+	/**public static String getMajNom() throws SQLException
 	{
-		 ResultSet resultat = ConnexionDB.getConnexion().createStatement().executeQuery("UPDATE APPRENANT SET nomApprenant = '?' WHERE idApprenant = '?' ");
+		 ResultSet resultat = ConnexionDB.getConnexion().createStatement().executeQuery("UPDATE APPRENANT SET  nomApprenant = 'Rizon' WHERE idApprenant = 17 ");
 		 resultat.next();
 		 return resultat.getString(null);
 	}
 	
-	public static void updApprenant(Apprenant apprenant) throws SQLException
+	/**public static void updApprenant(Apprenant apprenant) throws SQLException
 	{
-		String nom = "nvNom";
-		PreparedStatement prepareStatement = ConnexionDB.getConnexion().prepareStatement("UPDATE APPRENANT SET nomApprenant = '"+ apprenant + "' WHERE idApprenant = '" + nom +"'");
+		
+		PreparedStatement prepareStatement = ConnexionDB.getConnexion().prepareStatement("UPDATE APPRENANT.nomApprenant VALUE (?) WHERE idApprenant = 17");
 		//prepareStatement.setInt(?,apprenant.getIdApprenant());
-		prepareStatement.setString(1,apprenant.getNomApprenant());
-		//prepareStatement.setString(?,apprenant.getPrenomApprenant());
-		//prepareStatement.setDate(?,apprenant.getDateNaissance());
+		prepareStatement.setString(1,apprenant.getDateNaissance());
 		//prepareStatement.setString(?,apprenant.getEmailApprenant());
 		//prepareStatement.setString(?,apprenant.getPhotoApprenant());
 		//prepareStatement.setInt(?,apprenant.getIdRegionApprenant());
 		prepareStatement.executeUpdate();
 		
 	}
+	
 	// Remove
-	public static void rmvApprenant(Apprenant apprenant) throws SQLException
+	/**public static void rmvApprenant(Apprenant apprenant) throws SQLException
 	{
 		{
 			Statement statement = null;
@@ -195,6 +193,8 @@ public class Requetes {
 		}
 		
 	}
+	
+	/**
 	// Affecter 2 activités 
 	public static  void addActivity(int a, int b) throws SQLException {
 		PreparedStatement prepareStatement = ConnexionDB.getConnexion().prepareStatement("INSERT INTO fait` VALUES( ? , ? )");
@@ -210,6 +210,6 @@ public class Requetes {
 		 return resultat.getInt(1);
 	}
 	
-
+*/
 }
 

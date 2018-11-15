@@ -3,6 +3,9 @@ package pomNico;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+
+
+
 public class Main {
 	public static void main (String[] args) throws ClassNotFoundException, SQLException{
 
@@ -14,6 +17,8 @@ public class Main {
 		
 		//appel d'ouverture de connexion
 		ConnexionDB.connexion();
+		
+		//majNom();
 		
 		
 		// appel methode pour afficher les activites de Nicolas Filine
@@ -112,32 +117,34 @@ public class Main {
 		System.out.println();
 	}
 
+	/**
 	
 	// méthode pour modifier le nom
-	public static void majNom() throws SQLException {
-		Apprenant nomApprenant = new Apprenant();
+		public static void majNom() throws SQLException {
+			Apprenant nomApprenant = new Apprenant();
+			
+			nomApprenant.setNomApprenant("Raffarin");
+			
+		Requetes.updApprenant(nomApprenant);
+		}
+		/**
+		// méthode pour supprimer un Apprenant
+		public static void supApprenant() throws SQLException {
+			Apprenant apprenant = new Apprenant();
+			
+			apprenant.getIdApprenant();
+			
+			Requetes.rmvApprenant(17);
+		}
 		
-		nomApprenant.setNomApprenant(Requetes.getMajNom());
-		
-		Requetes.updApprenant();
-	}
-	
-	// méthode pour supprimer un Apprenant
-	public static void supApprenant() throws SQLException {
-		Apprenant apprenant = new Apprenant();
-		
-		apprenant.getIdApprenant();
-		
-		Requetes.rmvApprenant(17);
-	}
-	
-	// affecter 2 activités
-	public static void AddActivite() throws SQLException {
-		Activite nvlActivite = new Activite(0, null);
-		
-		nvlActivite.setIdActivite(getNombreActivite()+1);
-		nvlActivite.setNomActivite("Caresser le chat");
-		
-		Requetes.addActivity();
-	}
+		// affecter 2 activités
+		public static void AddActivite() throws SQLException {
+			Activite nvlActivite = new Activite(0, null);
+			
+			nvlActivite.setIdActivite(getNombreActivite()+1);
+			nvlActivite.setNomActivite("Caresser le chat");
+			
+			Requetes.addActivity();
+		}
+**/
 }
