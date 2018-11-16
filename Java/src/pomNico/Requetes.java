@@ -190,7 +190,7 @@ public static ArrayList<Apprenant> afficherActivitesApp() throws ClassNotFoundEx
 	System.out.println("013 => Travailler jour et nuit");
 	System.out.println("Veuillez saisir un numéro : ");	
 	
-	
+	 
 	ArrayList<Apprenant> listeActivitesParApp = new ArrayList<Apprenant>();
 	
 		int nActivite = saisie.nextInt();

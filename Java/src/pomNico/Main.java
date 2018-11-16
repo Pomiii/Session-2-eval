@@ -14,7 +14,7 @@ public class Main {
 		
 		Requetes.afficherActivitesApp();
 	
-		
+		 
 	
 	
 		// appel methode pour afficher les activites de Nicolas Filine

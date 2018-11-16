@@ -25,8 +25,8 @@ public class ConnexionDB {
 
 				connexion=DriverManager.getConnection(url,"root","root");
 				JOptionPane.showMessageDialog(null,"Bravo, vous êtes connecté","Bienvenue",JOptionPane.INFORMATION_MESSAGE);
-
-
+  
+   
 			}
 			catch(Exception e)
 			{
@@ -101,6 +101,9 @@ public class ConnexionDB {
 	public static void setConnexion(Connection connexion) {
 		ConnexionDB.connexion = connexion;
 	}
+
+
+
 
 
 
