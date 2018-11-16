@@ -7,7 +7,16 @@ Ressources Utilisées :
 - Eclipse 4.9.0
 - MySQL Workbench 8.0.12
 - MySQL connector JAVA 8.0.13
-- GitHub
+- GitHub : URL clone "https://github.com/Pomiii/Session-2-eval.git"
+
+Dossier Ressources dans Repo :
+- apprenant.sql
+- bd_apprenant_apprenant.sql
+- bd_apprenant_activites.sql
+- bd_apprenant_fait.sql
+- bd_apprenant_region.sql
+- MCD_bd_apprenant.PNG
+- MLD_bd_apprenant.PNG
 
 Enoncer :
 
@@ -86,5 +95,7 @@ LES TABLES BD :
 17. ‘Zébulon’, ‘Zébutruc’, ‘1977-03-13’, ‘zebulonzeb@free.fr’, en région pays de Loire => a pour activités :ne fait aucune activité
 
 - Table Jointure
-IdApprennant
-IdActivite
+. IdApprennant
+. IdActivite
+
+
