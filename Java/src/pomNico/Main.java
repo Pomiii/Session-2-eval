@@ -10,8 +10,13 @@ public class Main {
 		System.out.println("On se connecte à la BDD");
 		ConnexionDB.connexion();
 
+		// appel de methode pour afficher les activités en fonction d'un apprenant
 		
-
+		Requetes.afficherActivitesApp();
+	
+		
+	
+	
 		// appel methode pour afficher les activites de Nicolas Filine
 		System.out.println("on affiche les activités de Nicolas Filine");
 		afficherActiviteParNom();
