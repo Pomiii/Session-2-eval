@@ -10,50 +10,88 @@ public class Main {
 		System.out.println("On se connecte à la BDD");
 		ConnexionDB.connexion();
 
-		// appel de methode pour afficher les activités en fonction d'un apprenant
-		
-		Requetes.afficherActivitesApp();
-	
-		 
-	
-	
-		// appel methode pour afficher les activites de Nicolas Filine
-		System.out.println("on affiche les activités de Nicolas Filine");
-		afficherActiviteParNom();
-		attenteEntree();
-
 		// appeler la methode pour afficher tous les apprenants
 		System.out.println("on affiche tous les apprenants");
 		tousApprenants();
 		attenteEntree();
-
+		attenteEntree();
 		// appeler la methode pour afficher ceux de la region IDF
 		System.out.println("on affiche les apprenants d'Ile de France");
 		regionIDF();
 		attenteEntree();
-
+		
 		// appeler la methode pour afficher ceux de la region PL
 		System.out.println("on affiche les apprenants des Pays de Loire");
 		regionPL();
 		attenteEntree();
+		attenteEntree();
 
+		
 		// appeler la methode pour afficher ceux de la region Aq
 		System.out.println("On affiche les apprenants d'Aquitaine");
 		regionAq();
+		attenteEntree();
+
+		// appel methode pour afficher les activites de Nicolas Filine
+		System.out.println("on affiche les activités de Nicolas Filine");
+		afficherActiviteParNom();
+		attenteEntree();
+		
+		// appel de methode pour afficher les apprenants d'une Activite
+		
+		System.out.println("afficher les apprenants d'une Activite");
+		Requetes.afficherActivitesApp();
+		//ArrayList<Apprenant> liste = Requetes.afficherActivitesApp();
+		//for (Apprenant apprenant : liste) {
+			
+		
+			//System.out.println(apprenant.getNomApprenant() + "\n");
+		//}
+		
+		attenteEntree();
+
+		// appel de la methode ajouterApprenant (voir sous le Main)
+		
+		
+		System.out.println("On ajoute un apprenant à la table");
+		ajouterApprenant();
+		attenteEntree();
+		
+		//on ajoute deux activités à Bebert
+		Requetes.ajouterActiviteBebert();
+		attenteEntree();
+		// appel de methode pour afficher les activités que personne ne fait
+		activitesOrphelines();
+		// On va modifier Filine
+		attenteEntree();
+		Requetes.modifierApprenant();
+		
+		
+	
+		 
+	
+	
+
+
 
 
 		System.out.println("On supprime l'apprenant de la table");
-		Apprenant Rizon = new Apprenant();
+		;
 		
-		supprimerApprenantParNom(Rizon);
+		Requetes.supprimerApprenant();
 		
-// appel de la methode ajouterApprenant (voir sous le Main)
-		
-		attenteEntree();
-		System.out.println("On ajoute un apprenant à la table");
-		ajouterApprenant();
 		// appel de fermeture de connexion
 		ConnexionDB.closeConnexion();
+	}
+
+
+
+	public static void activitesOrphelines() throws ClassNotFoundException, SQLException {
+		System.out.println("afficher les activités que personne ne fait");
+		ArrayList<Activite> listeOrphelines = Requetes.afficherActiviteSansApprenant();
+		for (Activite activite : listeOrphelines) {
+			System.out.println(activite.nomActivite + "\n");
+		}
 	}
 
 	
@@ -66,17 +104,13 @@ public class Main {
 	}
 
 	public static void ajouterApprenant() throws SQLException {
-		Apprenant nouvelApprenant = new Apprenant(33, "Bebert", "Jerome", "1976-12-10", "bebert.jerome@gmail.com", "photoApprenant", 1);
+		Apprenant nouvelApprenant = new Apprenant((Requetes.getNombreApprenants()+1), "Bebert", "Jerome", "1976-12-10", "bebert.jerome@gmail.com", "photoApprenant", 1);
 		
 
 		Requetes.ajouterApprenant(nouvelApprenant);
 	}
 
-public static void supprimerApprenantParNom(Apprenant apprenant) throws SQLException {
-		
-		apprenant.setIdApprenant(33);
-		Requetes.supprimerApprenant(apprenant);
-	}
+
 	
 	public static void attenteEntree() {
 		System.out.println("APPUYER SUR ENTREE POUR CONTINUER");

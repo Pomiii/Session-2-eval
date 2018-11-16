@@ -15,6 +15,8 @@ import java.util.Scanner;
 
 
 
+
+
 public class Requetes {
 
 	static Scanner saisie = new Scanner(System.in);
@@ -39,7 +41,7 @@ public class Requetes {
 
 		}
 
-		System.out.println("Nom et Prénom de tous les apprenants");
+		
 		return apprenants;
 	}
 
@@ -157,21 +159,26 @@ public class Requetes {
 
 		return listeActivites;
 	}
-	public static void supprimerApprenant(Apprenant apprenant) throws SQLException
+	public static void supprimerApprenant() throws SQLException, ClassNotFoundException
 	{
 		Statement statement = null;
+String nomSupprimer = saisie.nextLine();
+afficherApprenantNom();
 
+if (afficherApprenantNom().contains(nomSupprimer)) {
 		try {
 			statement = ConnexionDB.getConnexion().createStatement();
-			String suppression = "DELETE FROM Apprenant WHERE idApprenant="+apprenant.getIdApprenant();
+			
+			String suppression = "DELETE FROM Apprenant WHERE idApprenant="+nomSupprimer;
 			statement.executeUpdate(suppression);
-			System.out.println("L'apprenant "+ apprenant.getNomApprenant()+ " a été supprimé");
+			System.out.println("L'apprenant "+ nomSupprimer+ " a été supprimé");
 		}
 		catch(SQLException e){
 			System.out.println("Impossible de supprimer l'apprenant");
 		}
+}
+		else System.out.println("Ce nom n'existe pas");
 	}
-	
 public static ArrayList<Apprenant> afficherActivitesApp() throws ClassNotFoundException, SQLException {
 		
 	System.out.println("Voici la liste des activités :");
@@ -190,31 +197,86 @@ public static ArrayList<Apprenant> afficherActivitesApp() throws ClassNotFoundEx
 	System.out.println("013 => Travailler jour et nuit");
 	System.out.println("Veuillez saisir un numéro : ");	
 	
+	int nActivite = saisie.nextInt();
 	 
 	ArrayList<Apprenant> listeActivitesParApp = new ArrayList<Apprenant>();
 	
-		int nActivite = saisie.nextInt();
 
-		String requete	= "SELECT * FROM apprenant INNER JOIN fait ON apprenant.idApprenant = fait.idApprenant INNER JOIN activites ON activites.idActivite = fait.idActivite WHERE Activites.idActivite=" + nActivite;
+		String requete	= "SELECT * FROM apprenant INNER JOIN fait ON apprenant.idApprenant = fait.idApprenant INNER JOIN activites ON activites.idActivite = fait.idActivite WHERE Activites.idActivite=" + nActivite +"" ;
 		
 		ResultSet resultat = ConnexionDB.executerQuery(requete);
 		Apprenant apprenant = new Apprenant();
+		Activite activite = new Activite();
 		while(resultat.next())
 		{				
 			apprenant.setIdApprenant(resultat.getInt("apprenant.IdApprenant"));
 			apprenant.setNomApprenant(resultat.getString("apprenant.nomApprenant"));
 			listeActivitesParApp.add(apprenant);
-			//System.out.println(apprenant.getNomApprenant() + "\n");
+			System.out.println(apprenant.getNomApprenant() + "\n");
 			
-		}
-		Activite activite = new Activite();
 		activite.setIdActivite(nActivite);
-		activite.setNomActivite("activites.idActivite");
+		activite.setNomActivite(resultat.getString("activites.nomActivite"));
 	
-		System.out.println("Tableau des Apprenant pour "+ activite.getNomActivite());
+		}
+		
+		
 		return listeActivitesParApp;
 }
+public static void modifierApprenant() throws SQLException, ClassNotFoundException
+{
+	System.out.println("Veuillez saisir le nom de l'apprenant à modifier");
+	String ancienNom = saisie.next();
+	System.out.println("Veuillez saisir le nouveau nom à affecter a" + ancienNom);
+	String nouveauNom = saisie.next();
+	afficherApprenantNom();
+	
+	try {
+		PreparedStatement prepareStatement = ConnexionDB.getConnexion().prepareStatement("UPDATE apprenant SET apprenant.nomApprenant = '" + nouveauNom + "' WHERE apprenant.nomApprenant = '" +ancienNom + "'");
+		
+		prepareStatement.executeUpdate();
+		System.out.println("Modification effectuee pour l'apprenant : "+ancienNom);
 
+	}
+		catch(SQLException e){
+			
+			System.out.println("Erreur lors de la modification !");
+			}
+	}
+
+public static void ajouterActiviteBebert() throws SQLException {
+	PreparedStatement prepareStatement = ConnexionDB.getConnexion().prepareStatement("INSERT INTO `fait` VALUES( ? , ?), (? , ?)");
+
+	System.out.println("Ajoutons Caresser un chat et Ecouter de la musique à Bebert");
+	prepareStatement.setInt(1,8);
+	prepareStatement.setInt(2,33);
+	prepareStatement.setInt(3,9);
+	prepareStatement.setInt(4, 33);
+	prepareStatement.executeUpdate();
+}
+public static ArrayList<Activite> afficherActiviteSansApprenant() throws ClassNotFoundException, SQLException
+
+{
+	ArrayList<Activite>  activite = new ArrayList<Activite>();
+	String requete	= "SELECT * from fait right join activites on fait.idActivite = activites.idActivite where fait.idActivite is null"; 
+			
+	ResultSet resultat = ConnexionDB.executerQuery(requete);
+	while(resultat.next())
+	{
+
+		Activite orphanActivity= new Activite();
+		orphanActivity.setNomActivite(resultat.getString("activites.nomActivite"));
+		orphanActivity.setIdActivite(resultat.getInt("activites.idActivite"));
+		
+		activite.add(orphanActivity);
+
+	}
+
+	System.out.println("Liste des activités orphelines :");
+	return activite;
+}
+
+
+}
 	
 /**
  * Màj Nom
@@ -277,5 +339,5 @@ public static ArrayList<Apprenant> afficherActivitesApp() throws ClassNotFoundEx
 	}
 	
 */
-}
+
 
